@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class MainTest{
+public class MainTest {
     @Test
-    public void testOpenCalculatorPage(){
+    public void testOpenCalculatorPage() {
         // given
         WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver();
@@ -38,6 +38,11 @@ public class MainTest{
         WebElement webElementInputWeight = driver.findElement(byInputWeight);
         String weight = "55";
         webElementInputWeight.sendKeys(weight);
+
+        String xPathRadioButtonGenderFemale = "//input[@value='f']";
+        By byRadioButtonGenderFemale = By.xpath(xPathRadioButtonGenderFemale);
+        WebElement webElementRadioButtonGenderFemale = driver.findElement(byRadioButtonGenderFemale);
+        webElementRadioButtonGenderFemale.click();
 
 
     }
