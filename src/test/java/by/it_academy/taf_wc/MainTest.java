@@ -32,7 +32,7 @@ public class MainTest{
         By byInputHeight = By.name("height");
         WebElement webElementInputHeight = driver.findElement(byInputHeight);
         String height = "165";
-        webElementInputName.sendKeys(height);
+        webElementInputHeight.sendKeys(height);
 
 
     }
