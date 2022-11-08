@@ -34,6 +34,11 @@ public class MainTest{
         String height = "165";
         webElementInputHeight.sendKeys(height);
 
+        By byInputWeight = By.name("weight");
+        WebElement webElementInputWeight = driver.findElement(byInputWeight);
+        String weight = "55";
+        webElementInputWeight.sendKeys(weight);
+
 
     }
 
