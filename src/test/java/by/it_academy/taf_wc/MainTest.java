@@ -2,6 +2,7 @@ package by.it_academy.taf_wc;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ public class MainTest {
     @Test
     public void testOpenCalculatorPage() {
         // given
+        String expected = "Идеальная масса тела";
         WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver();
         String URL = "https://svyatoslav.biz/testlab/wt/index.php";
@@ -21,7 +23,7 @@ public class MainTest {
         WebElement webElementPageTitle = driver.findElement(byPageTitle);
         String actualPageTitle = webElementPageTitle.getText();
         System.out.println(actualPageTitle);
-        Util.waiter();
+
 
 
         String xPathInputName = "//input[@name='name']";
@@ -29,33 +31,35 @@ public class MainTest {
         WebElement webElementInputName = driver.findElement(byInputName);
         String name = "Vasia";
         webElementInputName.sendKeys(name);
-        Util.waiter();
+
 
         By byInputHeight = By.name("height");
         WebElement webElementInputHeight = driver.findElement(byInputHeight);
         String height = "165";
         webElementInputHeight.sendKeys(height);
-        Util.waiter();
+
 
         By byInputWeight = By.name("weight");
         WebElement webElementInputWeight = driver.findElement(byInputWeight);
         String weight = "55";
         webElementInputWeight.sendKeys(weight);
-        Util.waiter();
+
 
         String xPathRadioButtonGenderFemale = "//input[@value='f']";
         By byRadioButtonGenderFemale = By.xpath(xPathRadioButtonGenderFemale);
         WebElement webElementRadioButtonGenderFemale = driver.findElement(byRadioButtonGenderFemale);
         webElementRadioButtonGenderFemale.click();
-        Util.waiter();
 
-        String xPathButtonSubmit = "//input[@type='submit']";
-        By byButtonSubmit = By.xpath(xPathButtonSubmit);
-        WebElement webElementButtonSubmit = driver.findElement(byButtonSubmit);
-        webElementButtonSubmit.click();
-        Util.waiter();
 
-        driver.close();
+        String xPathResult = "//tbody/tr[2]/td[2]";
+        By byResult = By.xpath(xPathResult);
+        WebElement webElementResult = driver.findElement(byResult);
+        String actual = webElementResult.getText();
+        System.out.println(actual);
+        Assert.assertEquals(expected,actual);
+
+
+        driver.quit();
 
 
     }
