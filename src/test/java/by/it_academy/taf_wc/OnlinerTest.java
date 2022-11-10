@@ -9,20 +9,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class OnlinerTest {
     @Test
-    public void testOpenCalculatorPage() {
+    public void testOpenOnlinerPage() {
         String url = "https://www.onliner.by/";
-        String classNameFooterCopy = "footer-style__copy";
-        String expected = "© 2001—2022 Onlíner";
-
+        String expected = "Заказы";
+        String xPathTasksLink = "//li[@class = 'b-main-navigation__item']/a[@href='https://s.onliner.by/tasks']";
+        String xPathTasksPageTitle = "//div[@class='service-header__title service-header__title_huge']";
         WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver();
 
         driver.get(url);
-        By byFooterCopy = By.className(classNameFooterCopy);
-        WebElement webElementFooterCopy = driver.findElement(byFooterCopy);
-        String actualFooterCopy = webElementFooterCopy.getText();
+        By byTasksLink = By.xpath(xPathTasksLink);
+        WebElement webElementTasksLink = driver.findElement(byTasksLink);
+        webElementTasksLink.click();
 
-        Assert.assertEquals(expected, actualFooterCopy);
+        By byTasksPageTitle = By.xpath(xPathTasksPageTitle);
+        WebElement webElementTasksPageTitle = driver.findElement(byTasksPageTitle);
+        String actual = webElementTasksPageTitle.getText();
+
+        Assert.assertEquals(expected, actual);
 
         driver.quit();
     }
